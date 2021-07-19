@@ -9,3 +9,4 @@ urlpatterns = [
     path('resumeread', views.resumeread, name='resumeread'),
 
  ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
