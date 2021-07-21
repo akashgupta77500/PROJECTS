@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STUDY MATERIAL</title>
+</head>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+     <!--CSS + JAVA SCRIPT + BOOTSTRAP ke use krne ke lie link start-->
+<!--Font Awsm ke use krne ke lie link start-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Font Awsm ke use krne ke lie link end-->
+
+</head>
+
+
+<!--Navigation Bar start-->
+<nav class="navbar navbar-expand-sm bg-black sticky-top ">
+    <!--Navigation Bar content Brand image-->
+    <a href="{% url 'homepage' %}"><img src="static/images/snake.jpg" style="margin-left:-10px; width:200px;height:50px;border-radius:0px 0px 90px 90px"></a>
+    <!--Navigation Bar content Brand image-->
+
+        <!--Navigation Bar item 1 Start-->
+    <ul class="navbar-nav">
+     <li class="nav-item" style="margin-left:20px;font-size:18px">
+         <a class="nav-link active" href="{% url 'professional' %}" style="color:green">PROFESSIONAL</a>
+    </li>
+
+     <li class="nav-item" style="margin-left:20px;font-size:18px">
+        <a href="{% url 'study' %}" class="nav-link active"  style="color:green">STUDY</a>
+    </li>
+   </ul>
+     <!--Navigation Bar item 1 END-->
+<!-- Toggle Button start-->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Toggle Button end-->
+
+<!-- Search Bar START-->
+     <form action="/search" method="get" >
+      <input type="text" placeholder="Search.." name="search" style="padding:1%;border: 1px solid grey;font-size:px;margin-left:117px;margin-top:0px;width:270px; border-radius:0px 0px 0px 0px;background-color:black;color:white">
+      <button type="submit" style="padding:1%; width:50px;border:1px solid grey;margin-left:-5px;background-color:black;color:white;font-size:px;"><i class="fa fa-search"style="margin-bottom:3px" ></i></button>
+    </form>
+    <!-- Search Bar END-->
+
+    <!--Navigation Bar item 2 Start-->
+<ul class="navbar-nav" style="margin-left:245px">
+    <!-- Social Media Link -->
+        <div >
+            <span>
+                <span >
+                    <i> <a href="https://www.linkedin.com/in/akash-kumar-62583115a/"class="fa fa-linkedin " style="color: green;font-size:50px"></a></i>
+                    <i><a href="https://github.com/akashgupta77500"class="fa fa-github pl-2"style="color: white;font-size:50px"></a></i>
+                    <i> <a href="https://www.facebook.com/profile.php?id=100004607498487"class="fa fa-facebook pl-2" style="color: green;font-size:50px"></a></i>
+                    <i> <a href="https://www.instagram.com/akash77500/"class="fa fa-instagram pl-2" style="color: green;font-size:50px"></a></i>
+
+              </span>
+            </span>
+        </div>
+    <!-- Social Media Link  -->
+</ul>
+    <!--Navigation Bar item 2 END-->
+</nav>
+<!--Navigation Bar End-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body style="background-color:black;color:white">
+
+<div class="row-sm-7"style="margin-top:5px">
+
+<div class="row" style="position:fixed; margin-left:800px;margin-top:10px">
+ <form  method="post">
+      {% csrf_token %}
+     <div class="col-sm-4" style="text-align: center">
+     <input type="text" name="question" placeholder="ERROR" size="60" required style="text-align: center;;background-color:black;color:white;border: 1px solid white">
+     </div>
+     <div class="col-sm" style="text-align: center;">
+
+     <textarea type="text"  name="answer" placeholder="ANSWER" rows="12" cols="50" required style="text-align: center;background-color:black;color:white;" ></textarea>
+      </div>
+     <div class="col-sm" style="text-align: center">
+     <button type="submit" class="btn btn-success"  style="background-color: black;color:white;">DONE</button>
+     </div>
+ </form>
+ </div>
+
+
+
+   <div class="col-sm-8">
+  {% for m in material%}
+  <div class="container" style="width:700px;background-color:rgb(255,255,255,0.1);margin-left: 30px;margin-top: 20px;box-shadow: 0px 0px; height:auto;padding: 15px;">
+    <a href="">
+        <span class="link"></span>
+      </a>
+    <!--Make a container as button end-->
+      <h4 ><label style="color:green">(Q)</label> {{ m.title}}</h4>
+      <p><label style="color:green">(Answer)</label> {{ m.content}} </p>
+      <a href="{% url 'delete' m.id %}"  class="fa fa-trash-o"  onclick="return confirm('Are you sure? You want to delete this Article!')" style="margin-left:0px;color:rgb(255,255,255,0.0)"></a>
+
+   </div>
+  {% endfor%}
+
+   </div>
+
+</div>
+
+
+
+{% ifequal error "no" %}
+      <script>
+          alert(" ADDED SUCCESSFULLY")
+          window.location=('{% url 'study' %}')
+      </script>
+      {% endifequal %}
+
+       {% ifequal error "yes" %}
+      <script>
+          alert("SOMETHING WENT WRONG"TRY AGAIN")
+          window.location=('{% url 'study' %}')
+      </script>
+{% endifequal %}
+
+
+</body>
+</html>
+
+
+
+<br>
+
+
+

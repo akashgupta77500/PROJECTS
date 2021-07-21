@@ -23,26 +23,31 @@
 <!--Navigation Bar start-->
 <nav class="navbar navbar-expand-sm bg-black sticky-top ">
     <!--Navigation Bar content Brand image-->
-    <a href="{% url 'homepage'%}"><img src="static/images/snake.jpg" style="margin-left:-10px; width:200px;height:50px;border-radius:0px 0px 90px 90px"></a>
+    <a href="{% url 'homepage' %}"><img src="static/images/snake.jpg" style="margin-left:-10px; width:200px;height:50px;border-radius:0px 0px 90px 90px"></a>
     <!--Navigation Bar content Brand image-->
 
         <!--Navigation Bar item 1 Start-->
     <ul class="navbar-nav">
      <li class="nav-item" style="margin-left:20px">
-              <a class="nav-link active" href="#professional" style="color:green">PROFESSIONAL</a>
+         <a class="nav-link active" href="{% url 'professional' %}" style="color:green">PROFESSIONAL</a>
     </li>
 
-
+     <li class="nav-item" style="margin-left:20px">
+        <a href="{% url 'study' %}" class="nav-link active"  style="color:green">STUDY</a>
+    </li>
    </ul>
      <!--Navigation Bar item 1 END-->
 <!-- Toggle Button start-->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
 </button>
+
+
+
 <!-- Toggle Button end-->
 
     <!--Navigation Bar item 2 Start-->
-<ul class="navbar-nav" style="margin-left:730px">
+<ul class="navbar-nav" style="margin-left:680px">
     <!-- Social Media Link -->
         <div >
             <span>
@@ -72,32 +77,15 @@
 
 <!--Text to speach part start-->
 
+<div class="btn-group">
+       <button   onclick="playAudio()" type="button" class="btn btn-warning" style="margin-left:535px;margin-top:30px;font-size:43px;position:fixed;font-family:serif">HIRE </button>
+       <button  onclick="pauseAudio()" class="btn btn-warning" style="margin-left:665px;margin-top:30px;font-size:43px;position:fixed;font-family:serif">ME</button>
+</div>
 
-   <form method="post"  action="{% url 'resumeread' %}" >
-    {% csrf_token %}
-    <input type="text" name="honey"
-           value="Hello, its my pleasure to introduce myself. My name is akash gupta from gopalganj district Bihar.
-    I have done my B-Tech in mechanical branch from People's University, bhopal with an aggregate of 73.7% . My 12th
-    class % is 58.6% with NIOS board . My 10th class percentage is 74.1% with CBSE board . My strengths are: i am self
-    disciplined and punctual . I am highly motivated and eager to learn new methodology and technology . I am always willing
-    to innovate new things which can improve the existing technology . I can adopt easily in any type environment .
-    I have ability to work in individual as well as in group . My short term goal was to start my carer as soon as
-    possible, after my college . So, I have 3 years of experience in Flipkart process in non technical field .
-    Now i want to switch my career from non-technical field to technical field . I had left my job on 6th February, 2021 .
-    I have good knowledge of Python basics to advanced level, also i am expert in Django framework which is used for
-    web development . I am a full stalk developer, for frontend, i know HTML, CSS, BOOTSTRAP . My long term goal is I want
-    start my career in technical field and to be one of the reason for the success of the organization. My ethics is
-    I never neglect an opportunity for my improvement . You can contact me on my number 7004166578. and
-     also, mail me on , akashgupta77500@gmail.com . My current location is GB Palya, bengaluru . That's all about me .
-     Thanks for listening . Have a good day . "
 
-      style="margin-left:600px;display:none">
-       <button type="submit" class="btn btn-warning" style="margin-left:540px;margin-top:60px;font-size:50px;position:fixed">HIRE ME</button>
-   </form>
 
- <!--Text to speach form End-->
 
-    <h1 style="font-size:90px;margin-left:70px;margin-top:130px">I<span style="color:green;margin-left:12px">'</span> <span style="color:green;margin-left:-5px">M</span></h1>
+    <h1 style="font-size:90px;margin-left:70px;margin-top:75px">I<span style="color:green;margin-left:12px">'</span> <span style="color:green;margin-left:-5px">M</span></h1>
     <h1 style="font-size:80px;margin-left:45px;margin-top:-40px;">
         <span style="color:green;margin-left:px;font-size:110px">A</span>
         <span >K</span>
@@ -275,7 +263,7 @@ body {
     <!--PROFESSIONAL KNOWLEDGE Start-->
 
 
-<div class="card" id="professional">
+<div class="card">
   <h1 style="font-family:serif"><b>01 PROFESSIONAL</b></h1>
   <h6 >MY KNOWLEDGE LEVEL IN SOFTWARE</h6>
     <br>
@@ -324,10 +312,75 @@ body {
 
 <!--PROFESSIONAL KNOWLEDGE end-->
 
-
+<body>
 
 <nav class="navbar navbar-expand-sm bg-success "style="margin-left:480px;height:40px;width:400px;border-radius:15px 15px 0px 0px">
     <i class="fa fa-phone-square"style="font-size:15px;margin-left:-10px"> </i><h6 style="margin-left:17px; margin-top:10px">7004166578</h6></div>
     <i class="fa fa-envelope-o"style="font-size:15px;margin-left:20px"> </i><h6 style="margin-left:20px;margin-top:10px">akashgupta77500@gmail.com</h6>
 </nav>
 
+<br>
+</body>
+
+{% ifequal error "loop" %}
+      <script>
+          alert("Loop already started, Please Listen Carefully")
+          window.location=('{% url 'study' %}')
+      </script>
+      {% endifequal %}
+
+       {% ifequal error "yes" %}
+      <script>
+          alert("SOMETHING WENT WRONG"TRY AGAIN")
+          window.location=('{% url 'study' %}')
+      </script>
+{% endifequal %}
+
+
+<audio  id="myAudio">
+  <source src="static/images/audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+
+<style>
+.btn-group button {
+
+
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+</style>
+
+
+
+
+<script>
+var x = document.getElementById("myAudio");
+
+function playAudio() {
+  x.play();
+}
+
+function pauseAudio() {
+  x.pause();
+}
+</script>
