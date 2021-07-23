@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from.models import *
-import pyttsx3
-from django.contrib import messages
+
 
 # Create your views here.
 

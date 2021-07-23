@@ -87,25 +87,24 @@
 
 <div class="row-sm-7"style="margin-top:5px">
 
-<div class="row" style="position:fixed; margin-left:800px;margin-top:10px">
+<div class="row" style="position:fixed; margin-left:780px;margin-top:10px">
  <form  method="post">
       {% csrf_token %}
      <div class="col-sm-4" style="text-align: center">
-     <input type="text" name="question" placeholder="ERROR" size="60" required style="text-align: center;;background-color:black;color:white;border: 1px solid white">
+     <input  type="text" name="question"  placeholder="QUESTION" size="70" required style="text-align: center;;background-color:black;color:white;border: 1px solid white">
      </div>
      <div class="col-sm" style="text-align: center;">
 
-     <textarea type="text"  name="answer" placeholder="ANSWER" rows="12" cols="50" required style="text-align: center;background-color:black;color:white;" ></textarea>
+     <textarea type="text"   name="answer"  placeholder="ANSWER" rows="12"  required style="text-align: center;background-color:black;color:white; width:460px" ></textarea>
       </div>
      <div class="col-sm" style="text-align: center">
-     <button type="submit" class="btn btn-success"  style="background-color: black;color:white;">DONE</button>
+     <button type="submit"   class="btn btn-success"  style="background-color: black;color:white;">DONE</button>
      </div>
  </form>
  </div>
 
 
-
-   <div class="col-sm-8">
+   <div class="col-sm-7">
   {% for m in material%}
   <div class="container" style="width:700px;background-color:rgb(255,255,255,0.1);margin-left: 30px;margin-top: 20px;box-shadow: 0px 0px; height:auto;padding: 15px;">
     <a href="">
@@ -113,7 +112,7 @@
       </a>
     <!--Make a container as button end-->
       <h4 ><label style="color:green">(Q)</label> {{ m.title}}</h4>
-      <p><label style="color:green">(Answer)</label> {{ m.content}} </p>
+         <p>{{ m.content|linebreaks}} </p>
       <a href="{% url 'delete' m.id %}"  class="fa fa-trash-o"  onclick="return confirm('Are you sure? You want to delete this Article!')" style="margin-left:0px;color:rgb(255,255,255,0.0)"></a>
 
    </div>
