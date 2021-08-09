@@ -8,6 +8,9 @@ def homepage(request):
      return render(request,'homepage.html')
 
 
+def project(request):
+    return render(request, 'project.html')
+
 def study(request):
      error=""
      if request.method == "POST":

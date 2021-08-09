@@ -9,5 +9,6 @@ urlpatterns = [
     path('professional', views.professional, name='professional'),
     path('study', views.study, name='study'),
     path('search', views.search, name='search'),
+    path('project', views.project, name='project'),
     path('delete/<int:pid>', views.delete, name='delete'),
  ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
